@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package listeners;
+import espacial.Histograma;
 
 import gui.JFramePrincipal;
+import gui.JInternalFrameBinario;
+import gui.JInternalFrameBinario2U;
 import gui.JInternalFrameFiltro;
+import gui.JInternalFrameIluminacion;
 import gui.JInternalFrameImagen;
 import gui.JInternalFrameModificar;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
@@ -41,6 +46,31 @@ public class ModificarImagenListener implements ActionListener{
             JInternalFrameFiltro internalNuevo2 = new JInternalFrameFiltro(internal2);
             internalNuevo2.setVisible(true);
             this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo2);
+        }
+         if(item.getText().equals("Binario")){
+            JInternalFrameImagen internal3 = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            JInternalFrameBinario internalNuevo3 = new JInternalFrameBinario(internal3);
+            internalNuevo3.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo3);
+        }
+         if(item.getText().equals("Binario con 2 umbrales")){
+            JInternalFrameImagen internal3 = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+             JInternalFrameBinario2U internalNuevo3 = new JInternalFrameBinario2U(internal3);
+            internalNuevo3.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo3);
+        }
+        if(item.getText().equals("Histograma")){
+            JInternalFrameImagen internal4 = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            Histograma histograma = new Histograma(internal4.getImagenOriginal());
+            histograma.calcularHistogramas();
+        }
+        if(item.getText().equals("Iluminacion")){
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal     
+            JInternalFrameIluminacion internalNuevo = new JInternalFrameIluminacion(internal);
+            internalNuevo.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
+            
         }
     }
     

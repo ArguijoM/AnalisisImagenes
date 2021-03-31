@@ -16,15 +16,15 @@ import java.awt.image.BufferedImage;
 public class Histograma {
     
     private Image imagenOriginal;
-    private int[]r;
-    private int[]g;
-    private int[]b;
+    private double[]r;
+    private double[]g;
+    private double[]b;
 
     public Histograma(Image imagen) {
         this.imagenOriginal = imagen;
-        this.r = new int[256];
-        this.g = new int[256];
-        this.b = new int[256];
+        this.r = new double[256];
+        this.g = new double[256];
+        this.b = new double[256];
     }
     public void calcularHistogramas(){
         // recorrer la imagen
@@ -44,25 +44,41 @@ public class Histograma {
         Grafica g1 = new Grafica(r,g,b);
         g1.graficarHistograma();
     }
+        public void calcularHistogramasSinGrafica(){
+        // recorrer la imagen
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(imagenOriginal);
+        Color color;
+        for(int x=0; x<bi.getWidth();x++)
+            for(int y=0; y< bi.getHeight();y++){
+                // extraer el color
+                color = new Color(bi.getRGB(x, y));
+                int r = color.getRed(); // (0-255)
+                int g = color.getGreen(); // (0-255)
+                int b = color.getBlue(); // (0-255)
+                this.r[r]++;
+                this.g[g]++;
+                this.b[b]++;
+            } 
+    }
 
     /**
      * @return the r
      */
-    public int[] getR() {
+    public double[] getR() {
         return r;
     }
 
     /**
      * @return the g
      */
-    public int[] getG() {
+    public double[] getG() {
         return g;
     }
 
     /**
      * @return the b
      */
-    public int[] getB() {
+    public double[] getB() {
         return b;
     }
     

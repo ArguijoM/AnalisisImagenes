@@ -24,7 +24,7 @@ public class JInternalFrameFiltro extends javax.swing.JInternalFrame {
     public JInternalFrameFiltro(JInternalFrameImagen internal) {
         this.internal = internal;
         initComponents();
-        
+        setClosable(true);
         this.jButtonGrises.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,6 +89,9 @@ public class JInternalFrameFiltro extends javax.swing.JInternalFrame {
                 internal.setImagen(nueva2);
             }
         });
+    }
+    public void setClosable(boolean closable) {
+        this.closable = closable;
     }
 
     /**

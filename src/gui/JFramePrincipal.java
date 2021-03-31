@@ -22,6 +22,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         this.jMenuItem1.addActionListener(new InternalFrameListener(this));
         this.jMenuItem2.addActionListener(new ModificarImagenListener(this));
         this.jMenuItem3.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem4.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem5.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem6.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem7.addActionListener(new ModificarImagenListener(this));
     }
 
     /**
@@ -40,6 +44,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +77,28 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem3.setText("Filtros");
         jMenu2.add(jMenuItem3);
 
+        jMenuItem4.setText("Binario");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem7.setText("Binario con 2 umbrales");
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem5.setText("Histograma");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Iluminacion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -86,6 +116,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +169,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 
     /**

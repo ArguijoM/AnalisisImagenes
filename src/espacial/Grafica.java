@@ -18,11 +18,11 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @author Manuel
  */
 public class Grafica extends JFrame{
-    int r[];
-    int g[];
-    int b[];
+    double r[];
+    double g[];
+    double b[];
     
-    public Grafica(int red[],int green[], int blue[]){
+    public Grafica(double red[],double green[], double blue[]){
         this.r=red;
         this.g = green;
         this.b = blue;
@@ -41,14 +41,14 @@ public class Grafica extends JFrame{
         dataset.addSeries(serieRed);
         dataset.addSeries(serieBlue);
         dataset.addSeries(serieGreen);
-        JFreeChart chart = ChartFactory.createXYLineChart("Histograma", "Bytes", "Colores", dataset,PlotOrientation.VERTICAL,true,false,false);
+        JFreeChart chart = ChartFactory.createXYLineChart("Histograma", "Bytes", "Pixeles", dataset,PlotOrientation.VERTICAL,true,false,false);
         ChartPanel panel = new ChartPanel(chart);
         JFrame frame = new JFrame("main");
         frame.setLayout(new java.awt.BorderLayout());
         frame.add(panel);
         frame.validate();
         frame.setSize(800, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
         
     }

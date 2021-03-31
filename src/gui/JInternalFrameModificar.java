@@ -27,6 +27,7 @@ public class JInternalFrameModificar extends javax.swing.JInternalFrame {
     public JInternalFrameModificar( JInternalFrameImagen internal) {
         this.internal = internal;
         initComponents();
+        setClosable(true);
         this.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +46,9 @@ public class JInternalFrameModificar extends javax.swing.JInternalFrame {
         });
         
     }
-    
+    public void setClosable(boolean closable) {
+        this.closable = closable;
+    }
     
     
    

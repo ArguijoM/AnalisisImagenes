@@ -5,6 +5,8 @@
  */
 package analisisimagenes2021.pkg2;
 
+import espacial.Histograma;
+import herramientas.umbral;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -18,7 +20,18 @@ public class AnalisisImagenes20212 {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
+        Image img = herramientas.HerramientasImagen.abrirImagen();
+        
+        BufferedImage b =herramientas.HerramientasImagen.grises(herramientas.HerramientasImagen.toBufferedImage(img));
+        
+        Histograma h = new Histograma(herramientas.HerramientasImagen.toImage(b));
+        h.calcularHistogramas();
+        
+        int umbral1 = espacial.UmbralAutomatico.metodoIterativo(h.getR());
+        System.out.println("Umbral 1: "+umbral1);
+        int umbral2 = espacial.UmbralAutomatico.otsu(h.getR());
+        System.out.println("Umbral 2: "+umbral2);
 //       // visualización de la imagen dentro de la GUI
 //        Image imagen = herramientas.HerramientasImagen.abrirImagen();
 //        // para cuantización de la imagen vamos a un ocupar BufferedImage
@@ -29,7 +42,8 @@ public class AnalisisImagenes20212 {
 //        int g =color.getGreen();
 //        int b = color.getBlue();
 //        System.out.println();
-//    }
+    }
+    
     
     
     

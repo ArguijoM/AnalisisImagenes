@@ -23,10 +23,13 @@ public class JInternalFrameImagen extends javax.swing.JInternalFrame {
         initComponents();
         // establecer la imagen en la etiqueta
         this.jLabelImagen.setIcon(new ImageIcon(imagenOriginal));
-        this.setSize(imagenOriginal.getWidth(null),imagenOriginal.getHeight(null));
-                
+        this.setSize(imagenOriginal.getWidth(null),imagenOriginal.getHeight(null)); 
+        setClosable(true);
     }
-    
+
+    public void setClosable(boolean closable) {
+        this.closable = closable;
+    }
     public void setImagen(Image imagenNueva){
         this.imagenOriginal = imagenNueva;
         this.jLabelImagen.setIcon(new ImageIcon(imagenNueva));
