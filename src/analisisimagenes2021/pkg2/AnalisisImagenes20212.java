@@ -10,6 +10,10 @@ import herramientas.umbral;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -21,30 +25,12 @@ public class AnalisisImagenes20212 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Image img = herramientas.HerramientasImagen.abrirImagen();
+        //Image imgOscura=espacial.EspacialUno.modificarIluminacion(herramientas.HerramientasImagen.abrirImagen(), -60);
+        for(int c=0;c<=255;c++){
+            int r = (int)(Math.pow(1+10,c)/(1+10));
+            System.out.println("R: "+r);
+        }
         
-        BufferedImage b =herramientas.HerramientasImagen.grises(herramientas.HerramientasImagen.toBufferedImage(img));
-        
-        Histograma h = new Histograma(herramientas.HerramientasImagen.toImage(b));
-        h.calcularHistogramas();
-        
-        int umbral1 = espacial.UmbralAutomatico.metodoIterativo(h.getR());
-        System.out.println("Umbral 1: "+umbral1);
-        int umbral2 = espacial.UmbralAutomatico.otsu(h.getR());
-        System.out.println("Umbral 2: "+umbral2);
-//       // visualización de la imagen dentro de la GUI
-//        Image imagen = herramientas.HerramientasImagen.abrirImagen();
-//        // para cuantización de la imagen vamos a un ocupar BufferedImage
-//        BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
-//        
-//        Color color = new Color(bImagen.getRGB(300,240));
-//        int r = color.getRed();
-//        int g =color.getGreen();
-//        int b = color.getBlue();
-//        System.out.println();
     }
-    
-    
-    
     
 }

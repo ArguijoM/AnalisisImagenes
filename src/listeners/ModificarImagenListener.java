@@ -9,6 +9,10 @@ import espacial.Histograma;
 import gui.JFramePrincipal;
 import gui.JInternalFrameBinario;
 import gui.JInternalFrameBinario2U;
+import gui.JInternalFrameEcualizacion;
+import gui.JInternalFrameExpansionExp;
+import gui.JInternalFrameExpansionLineal;
+import gui.JInternalFrameExpansionLog;
 import gui.JInternalFrameFiltro;
 import gui.JInternalFrameIluminacion;
 import gui.JInternalFrameImagen;
@@ -55,7 +59,7 @@ public class ModificarImagenListener implements ActionListener{
         }
          if(item.getText().equals("Binario con 2 umbrales")){
             JInternalFrameImagen internal3 = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
-             JInternalFrameBinario2U internalNuevo3 = new JInternalFrameBinario2U(internal3);
+            JInternalFrameBinario2U internalNuevo3 = new JInternalFrameBinario2U(internal3);
             internalNuevo3.setVisible(true);
             this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo3);
         }
@@ -68,6 +72,40 @@ public class ModificarImagenListener implements ActionListener{
             JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
             // se puede extraer la imagen orginal     
             JInternalFrameIluminacion internalNuevo = new JInternalFrameIluminacion(internal);
+            internalNuevo.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
+            
+        }
+        if(item.getText().equals("Lineal")){
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal     
+            JInternalFrameExpansionLineal internalNuevo = new JInternalFrameExpansionLineal(internal);
+            internalNuevo.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
+            
+        }
+        if(item.getText().equals("Exponencial")){
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal     
+            JInternalFrameExpansionExp internalNuevo = new JInternalFrameExpansionExp(internal);
+            internalNuevo.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
+            
+        }
+        if(item.getText().equals("Logaritmica")){
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal     
+            JInternalFrameExpansionLog internalNuevo = new JInternalFrameExpansionLog(internal);
+            internalNuevo.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
+            
+        }
+        if(item.getText().equals("Ecualizacion")){
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal     
+            Image img = espacial.EspacialUno.Ecualizacion(internal.getImagenOriginal());
+            JInternalFrameImagen internalNuevo = new JInternalFrameImagen(img);
+            internalNuevo.setImagen(img);
             internalNuevo.setVisible(true);
             this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
             

@@ -75,11 +75,101 @@ public class EspacialUno {
      return herramientas.HerramientasImagen.toImage(bi);
     }
     
+    public static Image ExpansionLineal(Image image, int r1, int r2){
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(image);
+        Color color ;
+        int i,j,aux;
+        for(j = 0; j< bi.getHeight(); j++){
+            for(i = 0; i < bi.getWidth(); i++){
+                color = new Color(bi.getRGB(i,j));
+                int r = (color.getRed()-r1)*(255/(r2-r1));
+                int g = (color.getGreen()-r1)*(255/(r2-r1));
+                int b = (color.getBlue()-r1)*(255/(r2-r1));
+
+                color = new Color(verificar(r),verificar(g),verificar(b));
+                bi.setRGB(i, j, color.getRGB());
+             }
+        }
+        return herramientas.HerramientasImagen.toImage(bi);
+    }
+    
+    public static Image ExpansionLogaritmica(Image image, int c){
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(image);
+        Color color ;
+        int i,j,aux;
+        for(j = 0; j< bi.getHeight(); j++){
+            for(i = 0; i < bi.getWidth(); i++){
+                color = new Color(bi.getRGB(i,j));
+                int r = (int)((c*Math.log(1+color.getRed()))/(Math.log(1+c)));
+                int g = (int)((c*Math.log(1+color.getGreen()))/(Math.log(1+c)));
+                int b = (int)((c*Math.log(1+color.getBlue()))/(Math.log(1+c)));
+
+                color = new Color(verificar(r),verificar(g),verificar(b));
+                bi.setRGB(i, j, color.getRGB());
+             }
+        }
+        
+        return herramientas.HerramientasImagen.toImage(bi);
+    }
+        
+    public static Image ExpansionExponencial(Image image, double c){
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(image);
+        Color color;
+        int i,j,aux;
+        for(j = 0; j< bi.getHeight(); j++){
+            for(i = 0; i < bi.getWidth(); i++){
+                color = new Color(bi.getRGB(i,j));
+                int r = (int)(Math.pow(1+c,color.getRed())/c);
+                int g = (int)(Math.pow(1+c,color.getGreen())/c);
+                int b = (int)(Math.pow(1+c,color.getBlue())/c);
+
+                color = new Color(verificar(r),verificar(g),verificar(b));
+                bi.setRGB(i, j, color.getRGB());
+             }
+        }
+        return herramientas.HerramientasImagen.toImage(bi);
+    }
+    
+    
     
     public static int verificar(int valor){
         if(valor>255) return 255;
         if(valor<0) return 0;
         return valor;
+    }
+    
+    public static Image Ecualizacion(Image img){
+        int NM = img.getWidth(null)*img.getHeight(null);
+        Histograma h = new Histograma(img);
+        h.calcularHistogramasSinGrafica();
+        double[] hprom = h.getR();
+        double[] daf = new double[256];
+        int[] nt = new int[256];
+        daf[0] = (int)hprom[0];
+        nt[0] = (int)Math.round((daf[0]/NM)*255);
+        // recorremos el histograma para acumular
+        for(int x=1; x<hprom.length;x++){
+            daf[x] = (int)(hprom[x]+daf[x-1]);
+            double aux = daf[x]/NM;
+            int tmp = (int) Math.round(aux * 255);
+            nt[x] = tmp;
+        }
+
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(img);
+        Color color;
+        for(int x=0; x<bi.getWidth();x++){
+            for(int y=0; y<bi.getHeight();y++){
+                color = new Color(bi.getRGB(x, y));
+                int t1 = color.getRed();
+                int t2 =nt[t1];
+                color = new Color(t2,t2,t2);     
+                bi.setRGB(x,y,color.getRGB());
+            }
+        }
+
+        
+        return herramientas.HerramientasImagen.toImage(bi);
+
     }
     
     

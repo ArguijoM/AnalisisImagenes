@@ -99,5 +99,21 @@ public class HerramientasImagen {
         return bi;
     }
     
+    public static Image binarizacion(Image imagen, int u){
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(imagen);
+        Color color;
+        for(int j = 0 ; j< bi.getWidth();j++){
+            for(int m = 0 ; m < bi.getHeight();m++){
+                color = new Color(bi.getRGB(j, m));
+                double v = (color.getRed()+color.getGreen()+color.getBlue())/3;
+                if(v>=u){
+                    bi.setRGB(j, m,Color.BLACK.getRGB());
+                }else{
+                    bi.setRGB(j, m,Color.WHITE.getRGB());
+                }
+            }
+        }
+        return herramientas.HerramientasImagen.toImage(bi);
+    }
 
 }

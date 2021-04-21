@@ -5,6 +5,7 @@
  */
 package gui;
 
+import espacial.Histograma;
 import herramientas.umbral;
 import java.awt.Color;
 import java.awt.Image;
@@ -37,23 +38,35 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 //                System.out.println("Umbral: "+u.getUmbral());
 //                internal.setImagen(nueva);
                 
-               int u = jSlider1.getValue();
+                int u = jSlider1.getValue();
                 System.out.println("Valor de U: "+u);
-                BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(imagenOriginal);
-                Color color;
-                for(int j = 0 ; j< bi.getWidth();j++){
-                    for(int m = 0 ; m < bi.getHeight();m++){
-                        color = new Color(bi.getRGB(j, m));
-                        double v = (color.getRed()+color.getGreen()+color.getBlue())/3;
-                        if(v>=u){
-                            bi.setRGB(j, m,Color.BLACK.getRGB());
-                        }else{
-                            bi.setRGB(j, m,Color.WHITE.getRGB());
-                        }
-                    }
-                }
-                Image nueva = herramientas.HerramientasImagen.toImage(bi);
-                internal.setImagen(nueva); 
+                internal.setImagen(herramientas.HerramientasImagen.binarizacion(imagenOriginal, u)); 
+            }
+        });
+        jButtonISODATA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BufferedImage b =herramientas.HerramientasImagen.grises(herramientas.HerramientasImagen.toBufferedImage(imagenOriginal));
+                Histograma h = new Histograma(herramientas.HerramientasImagen.toImage(b));
+                h.calcularHistogramas();
+                int umbral1 = espacial.UmbralAutomatico.metodoIterativo(h.getR());
+                
+                internal.setImagen(herramientas.HerramientasImagen.binarizacion(imagenOriginal, umbral1));
+                System.out.println("Umbral método ISODATA: "+umbral1);
+                
+            }
+        });
+        
+        jButtonOTSU.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BufferedImage b =herramientas.HerramientasImagen.grises(herramientas.HerramientasImagen.toBufferedImage(imagenOriginal));
+                Histograma h = new Histograma(herramientas.HerramientasImagen.toImage(b));
+                h.calcularHistogramas();
+                int umbral2 = espacial.UmbralAutomatico.otsu(h.getR());
+                
+                internal.setImagen(herramientas.HerramientasImagen.binarizacion(imagenOriginal, umbral2));
+                System.out.println("Umbral método OTSU: "+umbral2);
             }
         });
         
@@ -74,6 +87,8 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 
         jSlider1 = new javax.swing.JSlider();
         jButton1 = new javax.swing.JButton();
+        jButtonISODATA = new javax.swing.JButton();
+        jButtonOTSU = new javax.swing.JButton();
 
         setTitle("Imagen Binarizada");
 
@@ -85,6 +100,10 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 
         jButton1.setText("Convertir");
 
+        jButtonISODATA.setText("ISODATA");
+
+        jButtonOTSU.setText("OTSU");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,7 +111,11 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
             .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonISODATA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonOTSU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +123,11 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonISODATA)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonOTSU)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,6 +136,8 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonISODATA;
+    private javax.swing.JButton jButtonOTSU;
     private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
 }
