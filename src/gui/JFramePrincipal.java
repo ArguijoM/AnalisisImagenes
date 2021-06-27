@@ -30,6 +30,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         this.jMenuItem8.addActionListener(new ModificarImagenListener(this));
         this.jMenuItem10.addActionListener(new ModificarImagenListener(this));
         this.jMenuItem11.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem3x3.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem5x5.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem12.addActionListener(new ModificarImagenListener(this));
+        this.jMenuItem13.addActionListener(new ModificarImagenListener(this));
+        
     }
 
     /**
@@ -52,11 +57,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3x3 = new javax.swing.JMenuItem();
+        jMenuItem5x5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +118,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
+        jMenuItem12.setText("Ruido");
+        jMenu2.add(jMenuItem12);
+
+        jMenuItem13.setText("Imagen de frecuencia");
+        jMenu2.add(jMenuItem13);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Expansion");
@@ -125,6 +141,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem11);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Convolucion");
+
+        jMenuItem3x3.setText("3x3");
+        jMenu4.add(jMenuItem3x3);
+
+        jMenuItem5x5.setText("5x5");
+        jMenu4.add(jMenuItem5x5);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -191,14 +217,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem3x3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem5x5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

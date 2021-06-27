@@ -107,13 +107,32 @@ public class HerramientasImagen {
                 color = new Color(bi.getRGB(j, m));
                 double v = (color.getRed()+color.getGreen()+color.getBlue())/3;
                 if(v>=u){
-                    bi.setRGB(j, m,Color.BLACK.getRGB());
+                    bi.setRGB(j, m,new Color(0,0,0).getRGB());
                 }else{
-                    bi.setRGB(j, m,Color.WHITE.getRGB());
+                    bi.setRGB(j, m,new Color(255,255,255).getRGB());
                 }
             }
         }
         return herramientas.HerramientasImagen.toImage(bi);
     }
-
+    
+    public static Image generarRuidoBN(Image img, int b, int n){
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(img);
+        int rx1=0,rx2=0,ry1=0,ry2=0,aux1=0,aux2=0;
+        int area = bi.getWidth()*bi.getHeight();
+        do{
+            rx1 = (int)(Math.random()*bi.getWidth());
+            ry1 = (int)(Math.random()*bi.getHeight());
+            bi.setRGB(rx1, ry1,Color.WHITE.getRGB());
+            aux1++;
+        }while(aux1<(int)((b*area)/100));
+        do{
+            rx2 = (int)(Math.random()*bi.getWidth());
+            ry2 = (int)(Math.random()*bi.getHeight());
+            bi.setRGB(rx2, ry2,Color.BLACK.getRGB());
+            aux2++;
+        }while(aux2<(int)((n*area)/100)); 
+        
+        return herramientas.HerramientasImagen.toImage(bi);
+    }
 }
